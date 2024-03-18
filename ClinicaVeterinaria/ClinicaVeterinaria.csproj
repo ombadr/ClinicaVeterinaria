@@ -180,6 +180,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +265,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Ricoveri\Index.cshtml" />
+    <Content Include="Views\Ricoveri\Details.cshtml" />
+    <Content Include="Views\Ricoveri\Aggiungi.cshtml" />
+    <Content Include="Views\Ricoveri\Modifica.cshtml" />
+    <Content Include="Views\Ricoveri\Elimina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
