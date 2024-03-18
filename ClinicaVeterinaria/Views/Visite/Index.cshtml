@@ -1,0 +1,38 @@
+﻿@model List <ClinicaVeterinaria.Models.Visite>
+
+@{ 
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+
+
+<div class="container">
+    <h2>Elenco Visite Veterinarie</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Animale</th>
+                <th>Data Visita</th>
+                <th>Esame Obiettivo</th>
+                <th>Cura Prescritta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var visita in Model)
+            {
+                <tr>
+                    <td>@visita.ID</td>
+                    <td>@visita.IDAnimale</td>
+                    <td>@visita.DataVisita.ToShortDateString()</td> <!-- Assicurati che DataVisita sia un oggetto DateTime -->
+                    <td>@visita.EsameObiettivo</td>
+                    <td>@visita.CuraPrescritta</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
