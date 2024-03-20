@@ -23,49 +23,25 @@ namespace ClinicaVeterinaria.Controllers
             return View(visiteList);
         }
 
-        public ActionResult Registra()
-        { return View(); }
+        public ActionResult Aggiungi()
+        {
+            ViewBag.AnimaliList = new SelectList(db.Animali.ToList(), "ID", "Nome");
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AggiungiVisita(Visite visita)
+        public ActionResult Aggiungi(Visite visite)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-
-                    visita.IDAnimale = 1;
-                    // Verifica se esiste un animale con l'ID specificato
-                    //var animale = db.Animali.Find(visita.IDAnimale);
-                    //if (animale == null)
-                    //{
-                    //    // Se l'animale non esiste, aggiungi un errore al modello e torna alla vista con il modello
-                    //    ModelState.AddModelError(string.Empty, "L'animale specificato non esiste.");
-                    //    ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-                    //    return View(visita);
-                    //}
-
-                    // Aggiungi la visita al database
-                    db.Visite.Add(visita);
-                    db.SaveChanges();
-
-                    // Reindirizza all'azione Index per visualizzare l'elenco aggiornato delle visite
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    // Gestisci l'eccezione qui
-                    // Puoi loggare l'errore, mostrare un messaggio all'utente, ecc.
-                    ModelState.AddModelError(string.Empty, "Si è verificato un errore durante l'aggiunta della visita.");
-                    ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-                    return View(visita);
-                }
+                db.Visite.Add(visite);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            // Se il modello non è valido, torna alla vista con il modello e gli errori di validazione
-            ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-            return View(visita);
+            ViewBag.AnimaliList = new SelectList(db.Animali.ToList(), "ID", "Nome");
+            return View(visite);
         }
 
 
