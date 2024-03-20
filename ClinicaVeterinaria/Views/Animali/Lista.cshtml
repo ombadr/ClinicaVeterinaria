@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista</h2>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nome Animale</th>
+            <th scope="col">Tipologia</th>
+            <th scope="col">Colore Mantello</th>
+            <th scope="col">Data di Nascita</th>
+            <th scope="col">Microchip</th>
+            <th scope="col">Numero Microchip</th>
+            <th scope="col">Nome Proprietario</th>
+            <th scope="col">Cognome Proprietario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in ViewBag.Animali)
+        {
+            <tr>
+                <td>@a.Nome</td>
+                <td>@a.Tipologia</td>
+                <td>@a.ColoreMantello</td>
+                <td>@a.DataNascita.Date.ToShortDateString()</td>
+                <td>@(a.Microchip != null ? (a.Microchip ? "Si" : "No") : "No")</td>
+                <td>@a.NumeroMicrochip</td>
+                <td>@a.NomeProprietario</td>
+                <td>@a.CognomeProprietario</td>
+                <td>
+                    @using (Html.BeginForm("Dettagli", "Animali", FormMethod.Post))
+                    {
+                        <input name="Id" hidden="hidden" value="@a.ID" />
+                        <button class="btn btn-primary">Dettaglio</button>
+                    }
+                    </td>
+                <td>
+                    @using (Html.BeginForm("Elimina", "Animali", FormMethod.Post))
+                    {
+                        <input hidden="hidden" name="ID" value="@a.ID" />
+                        <button class="btn btn-primary">Elimina</button>
+                    }
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+
