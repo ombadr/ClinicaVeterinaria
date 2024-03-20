@@ -1,0 +1,22 @@
+﻿@model ClinicaVeterinaria.Models.Prodotti
+
+@{
+    ViewBag.Title = "Elimina Prodotto";
+}
+
+<h2>Sei sicuro di voler eliminare questo prodotto?</h2>
+
+<div>
+    <h3>@Model.Nome</h3>
+    <p>Ditta Fornitrice: @Model.DittaFornitrice</p>
+    <p>Uso Possibile: @Model.UsoPossibile</p>
+
+    @using (Html.BeginForm("Delete", "Prodotti", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+        <button type="submit" class="btn btn-danger">Elimina</button>
+        @Html.ActionLink("Annulla", "Index", null, new { @class = "btn btn-default" })
+    }
+</div>
+

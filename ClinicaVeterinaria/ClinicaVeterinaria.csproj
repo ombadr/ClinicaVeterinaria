@@ -180,7 +180,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AnimaliController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdottiController.cs" />
     <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VisiteController.cs" />
@@ -267,6 +269,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Farmacia\Index.cshtml" />
+    <Content Include="Views\Prodotti\Index.cshtml" />
+    <Content Include="Views\Prodotti\Edit.cshtml" />
+    <Content Include="Views\Prodotti\Delete.cshtml" />
+    <Content Include="Views\Prodotti\Create.cshtml" />
     <Content Include="Views\Ricoveri\Index.cshtml" />
     <Content Include="Views\Ricoveri\Details.cshtml" />
     <Content Include="Views\Ricoveri\Aggiungi.cshtml" />
