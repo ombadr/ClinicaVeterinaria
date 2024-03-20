@@ -1,0 +1,21 @@
+﻿@model ClinicaVeterinaria.Models.Ricoveri
+
+@{
+    ViewBag.Title = "Elimina Ricovero";
+}
+
+<h2>Elimina Ricovero</h2>
+
+<div class="alert alert-danger">
+    Sei sicuro di voler eliminare questo ricovero?
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Elimina</button>
+        <a href="@Url.Action("Index")" class="btn btn-primary">Annulla</a>
+    </div>
+}

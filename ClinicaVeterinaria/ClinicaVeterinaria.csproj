@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AnimaliController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VisiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -266,13 +267,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
-
+    <Content Include="Views\Ricoveri\Index.cshtml" />
+    <Content Include="Views\Ricoveri\Details.cshtml" />
+    <Content Include="Views\Ricoveri\Aggiungi.cshtml" />
+    <Content Include="Views\Ricoveri\Modifica.cshtml" />
+    <Content Include="Views\Ricoveri\Elimina.cshtml" />
     <Content Include="Views\Animali\Index.cshtml" />
     <Content Include="Views\Animali\Lista.cshtml" />
     <Content Include="Views\Animali\Dettagli.cshtml" />
-
     <Content Include="Views\Visite\Index.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
