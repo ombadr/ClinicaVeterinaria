@@ -20,13 +20,11 @@
                 <ul class="navbar-nav flex-grow-1">
                     @if (!User.Identity.IsAuthenticated)
                     {
-
                         <li>@Html.ActionLink("Login", "Login", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Register", "Register", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                     else
                     {
-
                         <li>
                             <form action="@Url.Action("Logout", "Auth")" method="post">
                                 @Html.AntiForgeryToken()
@@ -34,6 +32,9 @@
                             </form>
                         </li>
                     }
+
+                    <li>@Html.ActionLink("Elenco Vendite", "Index", "Vendite", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Nuova Vendita", "Create", "Vendite", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
