@@ -1,26 +1,49 @@
 ﻿@model IEnumerable<ClinicaVeterinaria.Models.Prodotti>
 
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+}
+
 <h2>Lista Prodotti</h2>
+@Html.ActionLink("Aggiungi Prodotto", "Create", null, new { @class = "btn btn-custom" })
+
+
 
 <div class="row row-cols-3">
     @foreach (var item in Model)
+
     {
         <div class="col my-2">
             <div class="card text-center">
-                <div class="card-header"> <h3> <strong class="text-custom"> @item.Nome </strong></h3> </div>
+                <div class="card-header">
+                    <h3><strong class="text-custom">@item.Nome</strong></h3>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title"><strong class="text-custom">Ditta Fornitrice </strong> @item.DittaFornitrice</h5>
-                    <p class="card-text"><strong class="text-custom">Descrizione </strong> @item.UsoPossibile</p>
+                    <h5 class="card-title"><strong class="text-custom">Ditta Fornitrice:</strong> @item.DittaFornitrice</h5>
+                    <p class="card-text"><strong class="text-custom">Descrizione:</strong> @item.UsoPossibile</p>
+                    @if (item.DisposizioneMedicinali != null && item.DisposizioneMedicinali.Any())
+                    {
+                        foreach (var disposizione in item.DisposizioneMedicinali)
+                        {
+                            <p class="card-text"><strong class="text-custom">Armadietto:</strong> @disposizione.CodiceArmadietto</p>
+                            <p class="card-text"><strong class="text-custom">Cassetto:</strong> @disposizione.CodiceCassetto</p>
+                        }
+                    }
+                    else
+                    {
+                        <p class="card-text text-danger">Esaurito</p>
+                    }
+
                     @Html.ActionLink("Modifica", "Edit", new { id = item.ID }, new { @class = "btn btn-custom" })
-                    @Html.ActionLink("Elimina", "Delete", new { id = item.ID } ,new { @class = "btn btn-custom" })
-
-                    <p class="card-text"></p>
-
+                    @Html.ActionLink("Elimina", "Delete", new { id = item.ID }, new { @class = "btn btn-custom" })
 
                 </div>
-               
             </div>
         </div>
     }
 </div>
-
