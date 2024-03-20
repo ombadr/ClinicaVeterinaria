@@ -24,7 +24,11 @@ namespace ClinicaVeterinaria.Controllers
         }
 
         public ActionResult Registra()
-        { return View(); }
+        
+        {
+            List<Animali> animaliList = db.Animali.ToList();
+            ViewBag.Animali = animaliList;
+            return View(); }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,7 +39,7 @@ namespace ClinicaVeterinaria.Controllers
                 try
                 {
 
-                    visita.IDAnimale = 1;
+                    //visita.IDAnimale = 1;
                     // Verifica se esiste un animale con l'ID specificato
                     //var animale = db.Animali.Find(visita.IDAnimale);
                     //if (animale == null)
