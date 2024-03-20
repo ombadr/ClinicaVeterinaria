@@ -184,6 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
     <Compile Include="Controllers\RicoveriController.cs" />
+    <Compile Include="Controllers\RimborsoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VisiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -284,6 +285,8 @@
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
+    <Content Include="Views\Rimborso\RicoveriAttivo.cshtml" />
+    <Content Include="Views\Rimborso\RimborsoMensile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
