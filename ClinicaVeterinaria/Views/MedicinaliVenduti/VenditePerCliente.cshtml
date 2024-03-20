@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "VenditePerCliente";
+}
+
+<h2>VenditePerCliente</h2>
+
+
+
+<label>Inserisci il codice fiscale per il quale vuoi controllare le vendite</label>
+<input id="searchcf" type="text" />
+<input type="button" id="searchbtn" value="Cerca" />
+<div id="results"></div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#searchbtn').click(function () {
+                $('#results').html("");
+                $.ajax({
+                    url: '/MedicinaliVenduti/SellforCf',
+                    type: 'GET',
+                    data: { cf: $('#searchcf').val() },
+                    success: function (data) {
+                        console.log(data)
+                        $.each(data, function (index, value) {
+                            $("#results").append("<label>" + value.Nome + "</label>");
+
+                        });
+                    },
+                });
+            });
+        });
+    </script>
+}

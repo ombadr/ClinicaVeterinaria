@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "VenditePerData";
+}
+
+<h2>VenditePerData</h2>
+
+<label>Inserisci la data per il quale vuoi controllare le vendite</label>
+<input id="searchdate" type="date" />
+<input type="button" id="searchbtn" value="Cerca" />
+<div id="results"></div>
+
+
+
+
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#searchbtn').click(function () {
+                $('#results').html("");
+                $.ajax({
+                    url: '/MedicinaliVenduti/Sellfordata',
+                    type: 'GET',
+                    data: { searchdata: $('#searchdate').val() },
+                    success: function (data) {
+                        console.log(data)
+                        $.each(data, function (index, value) {
+                            $("#results").append("<label>" + value.Nome + "</label>");
+                            
+                        });
+                    },
+                });
+            });
+        });
+    </script>
+}
