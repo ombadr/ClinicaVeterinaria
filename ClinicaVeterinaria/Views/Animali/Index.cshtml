@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+
+{
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="Nome" />
+    </div>
+    <div>
+        <label>Tipologia:</label>
+        <input type="text" name="Tipologia" />
+    </div>
+    <div>
+        <label>Colore mantello:</label>
+        <input type="text" name="ColoreMantello" />
+    </div>
+    <div>
+        <label>Data di Nascita:</label>
+        <input type="date" name="DataNascita" />
+    </div>
+    <div>
+        <label>Microchip:</label>
+        <input type="radio" name="Microchip" value="true" />
+        <input type="radio" name="Microchip" value="false" />
+    </div>
+    <div>
+        <label>Numero Microchip:</label>
+        <input type="number" name="NumeroMicrochip" />
+    </div>
+    <div>
+        <label>Nome del proprietario:</label>
+        <input type="text" name="NomeProprietario" />
+    </div>
+    <div>
+        <label>Cognome del proprietario:</label>
+        <input type="text" name="CognomeProprietario" />
+    </div>
+    <button>Registra</button>
+}
