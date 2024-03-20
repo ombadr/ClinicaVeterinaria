@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var vendita in Model)
+        @foreach (var vendita in Model.OrderByDescending(v => v.DataVendita))
         {
             <tr>
                 <td>@vendita.ID</td>
