@@ -6,7 +6,7 @@
 
 <h2>Aggiungi Ricovero</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Aggiungi", "Ricoveri", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
