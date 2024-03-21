@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Cerca Prodotto";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Search", "Prodotti", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="searchString">Cerca:</label>
+        <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Inserisci nome prodotto o ditta fornitrice">
+    </div>
+    <button type="submit" class="btn btn-default">Cerca</button>
+}
+
+

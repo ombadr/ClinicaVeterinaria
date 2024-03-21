@@ -204,6 +204,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\Assets\Farmacia 1.jpeg" />
+    <Content Include="Content\Assets\prodotti.jpg" />
+    <Content Include="Content\Assets\searchcat.png" />
+    <Content Include="Content\Assets\vendita.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -283,6 +287,7 @@
     <Content Include="Views\Animali\Lista.cshtml" />
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
+    <Content Include="Views\Prodotti\Search.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
   </ItemGroup>
   <ItemGroup>
