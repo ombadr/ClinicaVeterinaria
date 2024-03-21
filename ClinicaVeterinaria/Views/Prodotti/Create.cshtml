@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Prodotti", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -14,18 +14,49 @@
         <h4>Prodotto</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.EditorFor(model => model.Nome)
-        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
 
-        @Html.EditorFor(model => model.DittaFornitrice)
-        @Html.ValidationMessageFor(model => model.DittaFornitrice, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.EditorFor(model => model.UsoPossibile)
-        @Html.ValidationMessageFor(model => model.UsoPossibile, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DittaFornitrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DittaFornitrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DittaFornitrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UsoPossibile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UsoPossibile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UsoPossibile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h4>Disposizione Medicinali </h4>
+        <div class="form-group">
+            @Html.Label("Codice Armadietto", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("CodiceArmadietto", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Cassetto", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("CodiceCassetto", null, new { @class = "form-control" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crea" class="btn btn-default" />
+                <input type="submit" value="Crea" class="btn btn-custom mt-2" />
             </div>
         </div>
     </div>

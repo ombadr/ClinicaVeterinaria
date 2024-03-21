@@ -182,7 +182,9 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedicinaliVendutiController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
+    <Compile Include="Controllers\RicercaRicoveroController.cs" />
     <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\RimborsoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -205,6 +207,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\Assets\Farmacia 1.jpeg" />
+    <Content Include="Content\Assets\prodotti.jpg" />
+    <Content Include="Content\Assets\searchcat.png" />
+    <Content Include="Content\Assets\vendita.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -287,6 +293,10 @@
     <Content Include="Views\Visite\Registra.cshtml" />
     <Content Include="Views\Rimborso\RicoveriAttivo.cshtml" />
     <Content Include="Views\Rimborso\RimborsoMensile.cshtml" />
+    <Content Include="Views\RicercaRicovero\Index.cshtml" />
+    <Content Include="Views\MedicinaliVenduti\VenditePerData.cshtml" />
+    <Content Include="Views\MedicinaliVenduti\VenditePerCliente.cshtml" />
+    <Content Include="Views\Prodotti\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

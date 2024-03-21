@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Ricerca Microchip";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="mb-4 text-center">Cerca il Tuo Animale per Numero di Microchip</h2>
+            <div class="input-group mb-3">
+                <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero del microchip">
+                <div class="input-group-append">
+                    <button onclick="cercaAnimale()" class="btn btn-outline-secondary">Cerca</button>
+                </div>
+            </div>
+            <div id="risultatoRicerca"></div>
+        </div>
+    </div>
+</div>
+
+<script>function cercaAnimale() {
+        const numeroMicrochip = document.getElementById('microchipInput').value;
+        fetch(`/Home/CercaAnimalePerMicrochip?numeroMicrochip=${numeroMicrochip}`)
+            .then(response => response.json())
+            .then(data => {
+                let htmlContent = '';
+                if (data.success) {
+                    const animale = data.data;
+                    htmlContent += `<div class="card" style="width: 20rem;">
+                                  <img src="${animale.Foto ? animale.Foto : 'path/to/default-image.jpg'}" class="card-img-top" alt="Foto di ${animale.Nome}" style="max-width: 100%; height: auto;">
+                                  <div class="card-body">
+                                    <h5 class="card-title">${animale.Nome}</h5>
+                                    <p class="card-text">Tipologia: ${animale.Tipologia}</p>`;
+                    if (animale.DataRicovero) {
+                        htmlContent += `<p class="card-text">Data di Ricovero: ${animale.DataRicovero}</p>`;
+                    }
+                    htmlContent += `</div></div>`;
+                } else {
+                    htmlContent = `<div class="alert alert-danger" role="alert">
+                                 ${data.message}
+                               </div>`;
+                }
+                document.getElementById('risultatoRicerca').innerHTML = htmlContent;
+            })
+            .catch(error => {
+                console.log(error);
+                document.getElementById('risultatoRicerca').innerHTML = `<div class="alert alert-danger" role="alert">Animale non trovato</div>`;
+            });
+    }</script>
