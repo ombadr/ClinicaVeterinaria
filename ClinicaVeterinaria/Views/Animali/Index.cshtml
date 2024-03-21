@@ -1,45 +1,73 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="mb-4">Index</h2>
 
-@using (Html.BeginForm())
-
+@using (Html.BeginForm("Index", "Animali", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
 {
-    <div>
-        <label>Nome:</label>
-        <input type="text" name="Nome" />
+    <div class="form-group">
+        <label for="Nome" class="col-sm-2 control-label">Nome:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome dell'animale">
+        </div>
     </div>
-    <div>
-        <label>Tipologia:</label>
-        <input type="text" name="Tipologia" />
+    <div class="form-group">
+        <label for="Tipologia" class="col-sm-2 control-label">Tipologia:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Tipologia" id="Tipologia" placeholder="Tipologia dell'animale">
+        </div>
     </div>
-    <div>
-        <label>Colore mantello:</label>
-        <input type="text" name="ColoreMantello" />
+    <div class="form-group">
+        <label for="ColoreMantello" class="col-sm-2 control-label">Colore mantello:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ColoreMantello" id="ColoreMantello" placeholder="Colore del mantello">
+        </div>
     </div>
-    <div>
-        <label>Data di Nascita:</label>
-        <input type="date" name="DataNascita" />
+    <div class="form-group">
+        <label for="DataNascita" class="col-sm-2 control-label">Data di Nascita:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="DataNascita" id="DataNascita">
+        </div>
     </div>
-    <div>
-        <label>Microchip:</label>
-        <input type="radio" name="Microchip" value="true" />
-        <input type="radio" name="Microchip" value="false" />
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Microchip:</label>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Microchip" id="MicrochipTrue" value="true">
+                <label class="form-check-label" for="MicrochipTrue">
+                    Sì
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Microchip" id="MicrochipFalse" value="false">
+                <label class="form-check-label" for="MicrochipFalse">
+                    No
+                </label>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Numero Microchip:</label>
-        <input type="number" name="NumeroMicrochip" />
+    <div class="form-group">
+        <label for="NumeroMicrochip" class="col-sm-2 control-label">Numero Microchip:</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="NumeroMicrochip" id="NumeroMicrochip" placeholder="Numero del microchip">
+        </div>
     </div>
-    <div>
-        <label>Nome del proprietario:</label>
-        <input type="text" name="NomeProprietario" />
+    <div class="form-group">
+        <label for="NomeProprietario" class="col-sm-2 control-label">Nome del proprietario:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="NomeProprietario" id="NomeProprietario" placeholder="Nome del proprietario">
+        </div>
     </div>
-    <div>
-        <label>Cognome del proprietario:</label>
-        <input type="text" name="CognomeProprietario" />
+    <div class="form-group">
+        <label for="CognomeProprietario" class="col-sm-2 control-label">Cognome del proprietario:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="CognomeProprietario" id="CognomeProprietario" placeholder="Cognome del proprietario">
+        </div>
     </div>
-    <button>Registra</button>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary my-3">Registra</button>
+        </div>
+    </div>
 }

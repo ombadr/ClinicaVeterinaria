@@ -32,7 +32,7 @@ namespace ClinicaVeterinaria.Controllers
             db.Animali.Add(animale);
             db.SaveChanges();
             TempData["ConfermaAnimale"] = true;
-            return RedirectToAction("Index");
+            return RedirectToAction("Lista");
         }
         [HttpPost]
         public ActionResult Dettagli(int ID)
