@@ -1,0 +1,30 @@
+﻿@model ClinicaVeterinaria.Models.Ricoveri
+
+@{
+    ViewBag.Title = "Dettagli Ricovero";
+}
+
+<h2>Dettagli Ricovero</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Nome Animale</dt>
+        <dd>@Model.Animali.Nome</dd>
+        <dt>Data Inizio Ricovero</dt>
+        <dd>@Model.DataInizioRicovero.ToShortDateString()</dd>
+        <dt>Foto</dt>
+        <dd><img src="@Url.Content(Model.Foto)" alt="Foto animale" width="200" /></dd>
+        <dt>Tipologia</dt>
+        <dd>@Model.Animali.Tipologia</dd>
+        <dt>Colore Mantello</dt>
+        <dd>@Model.Animali.ColoreMantello</dd>
+        <dt>Numero Microchip</dt>
+        <dd>@Model.Animali.NumeroMicrochip</dd>
+    </dl>
+</div>
+
+<div>
+    <p>
+        <a href="@Url.Action("Index")" class="btn btn-primary">Torna all'elenco</a>
+    </p>
+</div>

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Dettagli";
+}
+
+<h2>Dettagli</h2>
+
+@using (Html.BeginForm("Modifica","Animali",FormMethod.Post))
+{ 
+
+
+    <div class="container mt-4">
+        <h2>Dettaglio Animale</h2>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nome">Nome Animale:</label>
+                        <input type="text" class="form-control" name="Nome" value="@ViewBag.Animale.Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipologia">Tipologia:</label>
+                        <input type="text" class="form-control" name="Tipologia" value="@ViewBag.Animale.Tipologia">
+                    </div>
+                    <div class="form-group">
+                        <label for="colore_mantello">Colore Mantello:</label>
+                        <input type="text" class="form-control" name="ColoreMantello" value="@ViewBag.Animale.ColoreMantello">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_nascita">Data di Nascita:</label>
+                        <input type="date" class="form-control" name="DataNascita" value="@((ViewBag.Animale.DataNascita != null) ? ((DateTime)ViewBag.Animale.DataNascita).ToString("yyyy-MM-dd") : "")">
+                    </div>
+                    <div class="form-group">
+                        <label for="microchip">Microchip:</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="microchip_si" name="Microchip" value="Si" @(ViewBag.Animale.Microchip == true ? "checked" : "")>
+                            <label class="form-check-label" for="microchip_si">Si</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="microchip_no" name="Microchip" value="No" @(ViewBag.Animale.Microchip == false ? "checked" : "")>
+                            <label class="form-check-label" for="microchip_no">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero_microchip">Numero Microchip:</label>
+                        <input type="text" class="form-control" name="NumeroMicrochip" value="@ViewBag.Animale.NumeroMicrochip">
+                    </div>
+                    <div class="form-group">
+                        <label for="nome_proprietario">Nome Proprietario:</label>
+                        <input type="text" class="form-control" name="NomeProprietario" value="@ViewBag.Animale.NomeProprietario">
+                    </div>
+                    <div class="form-group">
+                        <label for="cognome_proprietario">Cognome Proprietario:</label>
+                        <input type="text" class="form-control" name="CognomeProprietario" value="@ViewBag.Animale.CognomeProprietario">
+                    </div>
+                    @using (Html.BeginForm("Modifica", "Animali", FormMethod.Post))
+                    {
+                        <input hidden="hidden" name="ID" value="@ViewBag.Animale.ID" />
+                        <button class="btn btn-primary">Salva Modifiche</button>
+                    }
+                    @using (Html.BeginForm("Elimina", "Animali", FormMethod.Post))
+                    {
+                        <input hidden="hidden" name="ID" value="@ViewBag.Animale.ID" />
+                        <button class="btn btn-primary">Elimina</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+}

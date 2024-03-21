@@ -178,9 +178,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AnimaliController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdottiController.cs" />
+    <Compile Include="Controllers\RicoveriController.cs" />
+    <Compile Include="Controllers\RimborsoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VisiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,9 +270,28 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Farmacia\Index.cshtml" />
+    <Content Include="Views\Prodotti\Index.cshtml" />
+    <Content Include="Views\Prodotti\Edit.cshtml" />
+    <Content Include="Views\Prodotti\Delete.cshtml" />
+    <Content Include="Views\Prodotti\Create.cshtml" />
+    <Content Include="Views\Ricoveri\Index.cshtml" />
+    <Content Include="Views\Ricoveri\Details.cshtml" />
+    <Content Include="Views\Ricoveri\Aggiungi.cshtml" />
+    <Content Include="Views\Ricoveri\Modifica.cshtml" />
+    <Content Include="Views\Ricoveri\Elimina.cshtml" />
+    <Content Include="Views\Animali\Index.cshtml" />
+    <Content Include="Views\Animali\Lista.cshtml" />
+    <Content Include="Views\Animali\Dettagli.cshtml" />
+    <Content Include="Views\Visite\Index.cshtml" />
+    <Content Include="Views\Visite\Registra.cshtml" />
+    <Content Include="Views\Rimborso\RicoveriAttivo.cshtml" />
+    <Content Include="Views\Rimborso\RimborsoMensile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\uploads\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

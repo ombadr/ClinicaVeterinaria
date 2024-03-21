@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ClinicaVeterinaria.Models.Prodotti>
+
+<h2>Lista Prodotti</h2>
+
+<div class="row row-cols-3">
+    @foreach (var item in Model)
+    {
+        <div class="col my-2">
+            <div class="card text-center">
+                <div class="card-header"> <h3> <strong class="text-custom"> @item.Nome </strong></h3> </div>
+                <div class="card-body">
+                    <h5 class="card-title"><strong class="text-custom">Ditta Fornitrice </strong> @item.DittaFornitrice</h5>
+                    <p class="card-text"><strong class="text-custom">Descrizione </strong> @item.UsoPossibile</p>
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.ID }, new { @class = "btn btn-custom" })
+                    @Html.ActionLink("Elimina", "Delete", new { id = item.ID } ,new { @class = "btn btn-custom" })
+
+                    <p class="card-text"></p>
+
+
+                </div>
+               
+            </div>
+        </div>
+    }
+</div>
+
