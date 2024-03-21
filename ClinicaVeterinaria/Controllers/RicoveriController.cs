@@ -5,10 +5,10 @@ using System.Web.Mvc;
 using ClinicaVeterinaria.Models;
 using System.IO;
 using System.Web;
-using System.Web.Mvc;
 
 namespace ClinicaVeterinaria.Controllers
 {
+    [Authorize(Roles = "Veterinario")]
     public class RicoveriController : Controller
     {
         private DBContext db = new DBContext();
