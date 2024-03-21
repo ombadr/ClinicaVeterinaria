@@ -18,6 +18,7 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
+
                     @if (!User.Identity.IsAuthenticated)
                     {
 
@@ -33,6 +34,8 @@
                                 <button type="submit" class="btn btn-link nav-link">Logout</button>
                             </form>
                         </li>
+                        <li>@Html.ActionLink("Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Rimborsi", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                 </ul>
             </div>

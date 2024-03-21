@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ClinicaVeterinaria.Models.RimborsiRicoveri>
+
+@{
+    ViewBag.Title = "Rimborso Mensile";
+}
+
+<h2>Rimborsi Mensili</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero Identificativo</th>
+            <th>Ente Rimborso</th>
+            <th>Data Rimborso</th>
+            <th>Importo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rimborso in Model)
+        {
+            <tr>
+
+                <td>@rimborso.IDRicovero</td>
+                <td>Comune di Roma</td>
+                <td>@rimborso.DataRimborso</td>
+                <td>@rimborso.Importo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
