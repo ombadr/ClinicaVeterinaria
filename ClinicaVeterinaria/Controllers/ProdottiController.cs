@@ -18,8 +18,8 @@ namespace ClinicaVeterinaria.Controllers
         // GET: Prodotti
         public ActionResult Index()
         {
-            var prodotti = _context.Prodotti.ToList();
-            return View(prodotti);
+            var ProdottiConDisposizioni = _context.Prodotti.Include(p => p.DisposizioneMedicinali).ToList();
+            return View(ProdottiConDisposizioni);
         }
 
         protected override void Dispose(bool disposing)
@@ -38,27 +38,58 @@ namespace ClinicaVeterinaria.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Prodotti prodotto = _context.Prodotti.Find(id);
+            Prodotti prodotto = _context.Prodotti.Include(p => p.DisposizioneMedicinali).SingleOrDefault(p => p.ID == id);
             if (prodotto == null)
             {
                 return HttpNotFound();
             }
+
+            if (prodotto.DisposizioneMedicinali.Any())
+            {
+                ViewBag.CodiceArmadietto = prodotto.DisposizioneMedicinali.First().CodiceArmadietto;
+                ViewBag.CodiceCassetto = prodotto.DisposizioneMedicinali.First().CodiceCassetto;
+            }
+
             return View(prodotto);
         }
 
-        // POST: Prodotti/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,DittaFornitrice,UsoPossibile")] Prodotti prodotto)
+        public ActionResult Edit([Bind(Include = "ID,Nome,DittaFornitrice,UsoPossibile")] Prodotti prodotto, int? CodiceArmadietto, int? CodiceCassetto)
         {
             if (ModelState.IsValid)
             {
                 _context.Entry(prodotto).State = EntityState.Modified;
+
+                
+                var disposizione = _context.DisposizioneMedicinali.FirstOrDefault(d => d.IDProdotto == prodotto.ID);
+                if (disposizione != null)
+                {
+                    
+                    if (CodiceArmadietto.HasValue && CodiceCassetto.HasValue)
+                    {
+                        disposizione.CodiceArmadietto = CodiceArmadietto.Value;
+                        disposizione.CodiceCassetto = CodiceCassetto.Value;
+                    }
+                }
+                else if (CodiceArmadietto.HasValue && CodiceCassetto.HasValue)
+                {
+                    
+                    _context.DisposizioneMedicinali.Add(new DisposizioneMedicinali
+                    {
+                        IDProdotto = prodotto.ID,
+                        CodiceArmadietto = CodiceArmadietto.Value,
+                        CodiceCassetto = CodiceCassetto.Value
+                    });
+                }
+
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(prodotto);
         }
+
         // GET: Prodotti/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -92,17 +123,56 @@ namespace ClinicaVeterinaria.Controllers
         // POST: Prodotti/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,DittaFornitrice,UsoPossibile")] Prodotti prodotto)
+        public ActionResult Create([Bind(Include = "Nome,DittaFornitrice,UsoPossibile")] Prodotti prodotto, int? codiceArmadietto, int? codiceCassetto)
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Prodotti.Add(prodotto);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                _context.SaveChanges(); 
+
+                
+                if (codiceArmadietto.HasValue && codiceCassetto.HasValue)
+                {
+                    
+                    var disposizione = new DisposizioneMedicinali
+                    {
+                        IDProdotto = prodotto.ID,
+                        CodiceArmadietto = codiceArmadietto.Value,
+                        CodiceCassetto = codiceCassetto.Value
+                    };
+                    _context.DisposizioneMedicinali.Add(disposizione);
+                    _context.SaveChanges(); 
+                }
+
+                TempData["SuccessMessage"] = "Prodotto creato con successo!"; 
+
+                return RedirectToAction("Index"); 
             }
 
             return View(prodotto);
         }
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            var risultatiRicerca = _context.Prodotti
+                                            .Include(p => p.DisposizioneMedicinali)
+                                            .Where(p => p.Nome.Contains(searchString) ||
+                                                        p.DittaFornitrice.Contains(searchString) ||
+                                                        p.DisposizioneMedicinali.Any(d => d.CodiceArmadietto.ToString().Contains(searchString)))
+                                            .ToList();
+
+            return View("Index", risultatiRicerca);
+        }
+
+
+
+
 
 
 
