@@ -1,33 +1,35 @@
 ﻿@model IEnumerable<ClinicaVeterinaria.Models.RimborsiRicoveri>
-
+<link href="~/Assets/css/Ricoveri.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Rimborso Mensile";
 }
 
 <h2>Rimborsi Mensili</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Numero Identificativo</th>
-            <th>Ente Rimborso</th>
-            <th>Data Rimborso</th>
-            <th>Importo</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var rimborso in Model)
-        {
-            <tr>
-                <td>@rimborso.IDRicovero</td>
-                <td>Comune di Roma</td>
-                <td>@rimborso.DataRimborso</td>
-                <td>@rimborso.Importo</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="d-flex justify-content-end">
+    @Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", null, new { @class = "add btn btn-primary mb-3" })
+</div>
 
-<div>
-    @Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", null, new { @class = "btn btn-primary" })
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Numero Identificativo</th>
+                <th scope="col">Ente Rimborso</th>
+                <th scope="col">Data Rimborso</th>
+                <th scope="col">Importo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rimborso in Model)
+            {
+                <tr>
+                    <td>@rimborso.IDRicovero</td>
+                    <td>Comune di Roma</td>
+                    <td>@rimborso.DataRimborso</td>
+                    <td>@rimborso.Importo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
