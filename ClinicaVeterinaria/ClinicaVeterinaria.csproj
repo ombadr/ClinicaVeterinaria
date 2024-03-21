@@ -297,12 +297,12 @@
     <Content Include="Views\Vendite\Index.cshtml" />
     <Content Include="Views\Vendite\Create.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
-    <Content Include="Views\Rimborso\RicoveriAttivo.cshtml" />
     <Content Include="Views\Rimborso\RimborsoMensile.cshtml" />
     <Content Include="Views\RicercaRicovero\Index.cshtml" />
     <Content Include="Views\MedicinaliVenduti\VenditePerData.cshtml" />
     <Content Include="Views\MedicinaliVenduti\VenditePerCliente.cshtml" />
     <Content Include="Views\Prodotti\Search.cshtml" />
+    <Content Include="Views\Rimborso\Aggiungi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
