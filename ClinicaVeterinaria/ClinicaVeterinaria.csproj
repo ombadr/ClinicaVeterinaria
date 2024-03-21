@@ -288,9 +288,11 @@
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
     <Content Include="Views\Prodotti\Search.cshtml" />
+    <Content Include="Views\Visite\Registra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\uploads\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
