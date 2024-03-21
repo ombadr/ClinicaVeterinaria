@@ -26,10 +26,33 @@ namespace ClinicaVeterinaria.Controllers
                 .ToListAsync();
             return Json(rimborsiMensili, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult RimborsoMensile()
         {
             var RimborsiRicoveri = db.RimborsiRicoveri.ToList();
             return View(RimborsiRicoveri);
         }
+
+        public ActionResult Aggiungi()
+        {
+            ViewBag.AnimaliList = new SelectList(db.Animali.ToList(), "ID", "Nome");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Aggiungi(RimborsiRicoveri rimborso)
+        {
+            if (ModelState.IsValid)
+            {
+                db.RimborsiRicoveri.Add(rimborso);
+                db.SaveChanges();
+                return RedirectToAction("RimborsoMensile", "Rimborso");
+            }
+
+            ViewBag.AnimaliList = new SelectList(db.Animali.ToList(), "ID", "Nome");
+            return View(rimborso);
+        }
+
     }
 }

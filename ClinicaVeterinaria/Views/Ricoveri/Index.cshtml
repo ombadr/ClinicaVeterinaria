@@ -12,6 +12,7 @@
 
 <table class="table">
     <tr>
+        <th>Numero Identificativo</th>
         <th>Nome Animale</th>
         <th>Data Inizio Ricovero</th>
         <th>Foto</th>
@@ -19,6 +20,7 @@
     @foreach (var ricovero in Model)
     {
         <tr>
+            <td>@ricovero.ID</td>
             <td>@ricovero.Animali.Nome</td>
             <td>@ricovero.DataInizioRicovero.ToShortDateString()</td>
             <td>

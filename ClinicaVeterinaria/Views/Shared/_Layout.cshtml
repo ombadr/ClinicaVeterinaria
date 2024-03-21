@@ -34,8 +34,13 @@
                                 <button type="submit" class="btn btn-link nav-link">Logout</button>
                             </form>
                         </li>
-                        <li>@Html.ActionLink("Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Rimborsi", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "nav-link" })</li>
+                        if (User.IsInRole("Veterinario"))
+                        {
+                            <li>@Html.ActionLink("Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Rimborsi", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+
                     }
                 </ul>
             </div>

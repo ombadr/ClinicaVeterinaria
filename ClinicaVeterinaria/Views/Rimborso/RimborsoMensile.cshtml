@@ -19,7 +19,6 @@
         @foreach (var rimborso in Model)
         {
             <tr>
-
                 <td>@rimborso.IDRicovero</td>
                 <td>Comune di Roma</td>
                 <td>@rimborso.DataRimborso</td>
@@ -29,3 +28,6 @@
     </tbody>
 </table>
 
+<div>
+    @Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", null, new { @class = "btn btn-primary" })
+</div>
