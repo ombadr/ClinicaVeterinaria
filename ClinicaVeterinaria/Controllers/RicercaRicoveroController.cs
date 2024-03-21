@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClinicaVeterinaria.Models;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 
 namespace ClinicaVeterinaria.Controllers
@@ -20,11 +21,12 @@ namespace ClinicaVeterinaria.Controllers
         }
 
 
-        [HttpGet]
+
         public JsonResult CercaAnimalePerMicrochip(string numeroMicrochip)
         {
 
             var animaleRicoverato = db.Ricoveri
+                .Include(r => r.Animali)
                                             .Where(r => r.Animali.Microchip == true && r.Animali.NumeroMicrochip == numeroMicrochip)
                                             .OrderByDescending(r => r.DataInizioRicovero).FirstOrDefault();
 
@@ -35,8 +37,8 @@ namespace ClinicaVeterinaria.Controllers
 
             var dataRisposta = new
             {
-                Nome = animaleRicoverato.Animali.Nome,
-                Tipologia = animaleRicoverato.Animali.Tipologia,
+                Nome = animaleRicoverato.Animali?.Nome,
+                Tipologia = animaleRicoverato.Animali?.Tipologia,
                 Foto = animaleRicoverato.Foto,
                 DataRicovero = animaleRicoverato.DataInizioRicovero.ToString("dd/MM/yyyy")
             };

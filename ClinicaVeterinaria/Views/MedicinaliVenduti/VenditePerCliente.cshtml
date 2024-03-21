@@ -26,12 +26,17 @@
                     success: function (data) {
                         console.log(data)
                         $.each(data, function (index, value) {
-                            $("#results").append("<label>" + value.Nome + "</label>");
-
+                            var content = "<div>" +
+                                "<h4>" + value.Nome + "</h4>" +
+                                "<p><strong>Ditta Fornitrice:</strong> " + (value.DittaFornitrice || "Non specificato") + "</p>" +
+                                "<p><strong>Uso Possibile:</strong> " + (value.UsoPossibile || "Non specificato") + "</p>" +
+                                "</div>";
+                            $("#results").append(content);
                         });
                     },
                 });
             });
         });
+
     </script>
 }
