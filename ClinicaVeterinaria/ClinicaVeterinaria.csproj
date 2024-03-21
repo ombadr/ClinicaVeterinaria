@@ -182,6 +182,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\FarmaciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedicinaliVendutiController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
     <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -287,8 +288,10 @@
     <Content Include="Views\Animali\Lista.cshtml" />
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
-    <Content Include="Views\Prodotti\Search.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
+    <Content Include="Views\MedicinaliVenduti\VenditePerData.cshtml" />
+    <Content Include="Views\MedicinaliVenduti\VenditePerCliente.cshtml" />
+    <Content Include="Views\Prodotti\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
