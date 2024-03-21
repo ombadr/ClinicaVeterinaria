@@ -208,8 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Assets\Style.css" />
     <Content Include="Assets\uploads\default.jpg" />
     <Content Include="Assets\uploads\dog-puppy-on-garden-royalty-free-image-1586966191.jpg" />
+    <Content Include="Assets\uploads\logo_veterinario.png" />
+    <Content Include="Assets\uploads\search.jpg" />
     <Content Include="Content\Assets\Farmacia 1.jpeg" />
     <Content Include="Content\Assets\prodotti.jpg" />
     <Content Include="Content\Assets\searchcat.png" />

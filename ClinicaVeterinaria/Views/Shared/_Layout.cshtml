@@ -6,112 +6,117 @@
     <title>@ViewBag.Title - Clinica Veterinaria</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assets/Style.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-nav">
+            <div class="container">
+                <img src="/Assets/uploads/logo_veterinario.png" alt="Logo" class="navbar-logo" width="60" height="60" />
+                @Html.ActionLink("Clinica Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-custom" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
 
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Clinica Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                  
-                    @if(User.Identity.IsAuthenticated && User.IsInRole("Veterinario"))
-            {
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Veterinario"))
+                        {
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Animali
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Lista Animali", "Lista", "Animali", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Aggiungi Animale", "Index", "Animali", new { area = "" }, new { @class = "dropdown-item" })</li>
-                        </ul>
-                    </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Animali
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Lista Animali", "Lista", "Animali", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                    <li>@Html.ActionLink("Aggiungi Animale", "Index", "Animali", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Visite
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Lista Visite", "Index", "Visite", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Aggiungi Visita", "Registra", "Visite", new { area = "" }, new { @class = "dropdown-item" })</li>
-                        </ul>
-                    </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Visite
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Lista Visite", "Index", "Visite", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                    <li>@Html.ActionLink("Aggiungi Visita", "Registra", "Visite", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Ricoveri
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Lista Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Aggiungi Ricovero", "Aggiungi", "Ricoveri", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Rimborso Mensile", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "dropdown-item" })</li>
-                        </ul>
-                    </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ricoveri
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Lista Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                    <li>@Html.ActionLink("Aggiungi Ricovero", "Aggiungi", "Ricoveri", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                    <li>@Html.ActionLink("Rimborso Mensile", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "dropdown-item text-custom" })</li>
+                                </ul>
+                            </li>
 
-            }
+                        }
 
-                    <li>@Html.ActionLink("Tracking Ricovero", "Index", "RicercaRicovero", new { area = "" }, new { @class = "nav-link" })</li>
-                    @if(User.Identity.IsAuthenticated && User.IsInRole("Farmacista"))
-            {
+                        <li>@Html.ActionLink("Tracking Ricovero", "Index", "RicercaRicovero", new { area = "" }, new { @class = "nav-link" })</li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Farmacista"))
+                        {
 
-                    <li>@Html.ActionLink("Farmacia", "Index", "Farmacia", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Farmacia", "Index", "Farmacia", new { area = "" }, new { @class = "nav-link" })</li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Medicinali Venduti
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Per Data", "VenditePerData", "MedicinaliVenduti", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Per Cliente", "VenditePerCliente", "MedicinaliVenduti", new { area = "" }, new { @class = "dropdown-item" })</li>
-                        </ul>
-                    </li>
-            }
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Medicinali Venduti
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Per Data", "VenditePerData", "MedicinaliVenduti", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Per Cliente", "VenditePerCliente", "MedicinaliVenduti", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+                        }
 
-                </ul>
-                <div>
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-                        <a href="@Url.Action("Login", "Auth", new { area = "" })" class="btn btn-success">Login</a>
-                        <a href="@Url.Action("Register", "Auth", new { area = "" })" class="btn btn-outline-light">Register</a>
-                    }
-                    else
-                    {
+                    </ul>
+                    <div>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("Login", "Auth", new { area = "" })" class="btn btn-custom">Login</a>
+                            <a href="@Url.Action("Register", "Auth", new { area = "" })" class="btn btn-outline-light text-custom">Register</a>
+                        }
+                        else
+                        {
 
-                        <form action="@Url.Action("Logout", "Auth")" method="post" style="display: inline;">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-success">Logout</button>
-                        </form>
-                    }
+                            <form action="@Url.Action("Logout", "Auth")" method="post" style="display: inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-success">Logout</button>
+                            </form>
+                        }
+                    </div>
                 </div>
             </div>
+        </nav>
+        <div class="container body-content flex-grow-1">
+            @RenderBody()
+
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Clinica Veterinaria</p>
+        
+        <footer class="text-custom text-center">
+            <hr />
+            <p class="mb-5">&copy; @DateTime.Now.Year - Clinica Veterinaria</p>
         </footer>
     </div>
 
-    <script src="~/Scripts/popper.min.js"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/popper.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
 
-    <script>
+        <script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var dropdownToggleList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
-            dropdownToggleList.forEach(function (dropdownToggleEl) {
-                new bootstrap.Dropdown(dropdownToggleEl);
+            document.addEventListener("DOMContentLoaded", function () {
+                var dropdownToggleList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+                dropdownToggleList.forEach(function (dropdownToggleEl) {
+                    new bootstrap.Dropdown(dropdownToggleEl);
+                });
             });
-        });
-    </script>
-    @RenderSection("scripts", required: false)
+        </script>
+        @RenderSection("scripts", required: false)
 </body>
 </html>
