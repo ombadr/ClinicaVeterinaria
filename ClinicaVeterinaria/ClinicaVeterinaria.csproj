@@ -184,6 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicinaliVendutiController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
+    <Compile Include="Controllers\RicercaRicoveroController.cs" />
     <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VisiteController.cs" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
+    <Content Include="Views\RicercaRicovero\Index.cshtml" />
     <Content Include="Views\MedicinaliVenduti\VenditePerData.cshtml" />
     <Content Include="Views\MedicinaliVenduti\VenditePerCliente.cshtml" />
     <Content Include="Views\Prodotti\Search.cshtml" />
