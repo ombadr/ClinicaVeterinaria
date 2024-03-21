@@ -3,9 +3,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using ClinicaVeterinaria.Models;
+using System.IO;
+using System.Web;
 
 namespace ClinicaVeterinaria.Controllers
 {
+    [Authorize(Roles = "Veterinario")]
     public class RicoveriController : Controller
     {
         private DBContext db = new DBContext();
@@ -34,10 +37,18 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Aggiungi(Ricoveri ricovero)
+        public ActionResult Aggiungi(Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
+                if(Foto != null && Foto.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(Foto.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Assets/uploads"), fileName);
+                    Foto.SaveAs(path);
+
+                    ricovero.Foto = Path.Combine("~/Assets/uploads", fileName);
+                }
                 db.Ricoveri.Add(ricovero);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,10 +73,27 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifica(Ricoveri ricovero)
+        public ActionResult Modifica(Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
+                if(Foto != null && Foto.ContentLength > 0)
+                {
+                    if(!string.IsNullOrEmpty(ricovero.Foto))
+                    {
+                        var oldFilePath = Server.MapPath(ricovero.Foto);
+                        if(System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                    }
+
+                    var fileName = Path.GetFileName(Foto.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Assets/uploads"), fileName);
+                    Foto.SaveAs(path);
+
+                    ricovero.Foto = $"~/Assets/uploads/{fileName}";
+                }
                 db.Entry(ricovero).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

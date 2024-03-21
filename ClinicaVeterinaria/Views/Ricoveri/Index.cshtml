@@ -21,7 +21,12 @@
         <tr>
             <td>@ricovero.Animali.Nome</td>
             <td>@ricovero.DataInizioRicovero.ToShortDateString()</td>
-            <td><img src="@Url.Content(ricovero.Foto)" width="100" /></td>
+            <td>
+                @if(ricovero.Foto != null)
+                {
+                    <img src="@Url.Content(ricovero.Foto)" alt="foto ricovero" style="max-width:100px; max-height:100px;"/>
+                }
+            </td>
             <td>
                 @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-info btn-xs" })
                 @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-warning btn-xs" })
