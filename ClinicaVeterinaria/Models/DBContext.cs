@@ -10,6 +10,8 @@ namespace ClinicaVeterinaria.Models
         public DBContext()
             : base("name=DBContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Animali> Animali { get; set; }

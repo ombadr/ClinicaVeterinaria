@@ -19,14 +19,14 @@
 
 <script>function cercaAnimale() {
         const numeroMicrochip = document.getElementById('microchipInput').value;
-        fetch(`/Home/CercaAnimalePerMicrochip?numeroMicrochip=${numeroMicrochip}`)
+        fetch(`/RicercaRicovero/CercaAnimalePerMicrochip?numeroMicrochip=${numeroMicrochip}`)
             .then(response => response.json())
             .then(data => {
                 let htmlContent = '';
                 if (data.success) {
                     const animale = data.data;
                     htmlContent += `<div class="card" style="width: 20rem;">
-                                  <img src="${animale.Foto ? animale.Foto : 'path/to/default-image.jpg'}" class="card-img-top" alt="Foto di ${animale.Nome}" style="max-width: 100%; height: auto;">
+                                  <img src="${animale.Foto ? animale.Foto.replace("~", "") : '/Assets/uploads/default.jpg'}" class="card-img-top" alt="Foto di ${animale.Nome}" style="max-width: 100%; height: auto;">
                                   <div class="card-body">
                                     <h5 class="card-title">${animale.Nome}</h5>
                                     <p class="card-text">Tipologia: ${animale.Tipologia}</p>`;

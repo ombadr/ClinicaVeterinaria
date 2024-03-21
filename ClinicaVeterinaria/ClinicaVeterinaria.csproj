@@ -188,6 +188,7 @@
     <Compile Include="Controllers\RicoveriController.cs" />
     <Compile Include="Controllers\RimborsoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VenditeController.cs" />
     <Compile Include="Controllers\VisiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Assets\uploads\default.jpg" />
+    <Content Include="Assets\uploads\dog-puppy-on-garden-royalty-free-image-1586966191.jpg" />
     <Content Include="Content\Assets\Farmacia 1.jpeg" />
     <Content Include="Content\Assets\prodotti.jpg" />
     <Content Include="Content\Assets\searchcat.png" />
@@ -260,6 +263,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -290,6 +294,8 @@
     <Content Include="Views\Animali\Lista.cshtml" />
     <Content Include="Views\Animali\Dettagli.cshtml" />
     <Content Include="Views\Visite\Index.cshtml" />
+    <Content Include="Views\Vendite\Index.cshtml" />
+    <Content Include="Views\Vendite\Create.cshtml" />
     <Content Include="Views\Visite\Registra.cshtml" />
     <Content Include="Views\Rimborso\RimborsoMensile.cshtml" />
     <Content Include="Views\RicercaRicovero\Index.cshtml" />
@@ -300,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\uploads\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
