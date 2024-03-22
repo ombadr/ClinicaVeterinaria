@@ -182,15 +182,5 @@ namespace ClinicaVeterinaria.Controllers
             return View("Index", risultatiRicerca);
         }
 
-
-
-
-
-
-
-
     }
-
-
-
 }

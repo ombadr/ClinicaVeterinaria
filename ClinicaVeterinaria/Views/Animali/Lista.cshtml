@@ -3,7 +3,7 @@
     ViewBag.Title = "Lista";
 }
 
-<h2>Lista</h2>
+<h2 class="text-center">Animali</h2>
 
 
 <table class="table table-striped">
@@ -35,14 +35,14 @@
                     @using (Html.BeginForm("Dettagli", "Animali", FormMethod.Post))
                     {
                         <input name="Id" hidden="hidden" value="@a.ID" />
-                        <button class="btn btn-primary">Dettaglio</button>
+                        <button class="btn btn-success">Dettaglio</button>
                     }
                     </td>
                 <td>
                     @using (Html.BeginForm("Elimina", "Animali", FormMethod.Post))
                     {
                         <input hidden="hidden" name="ID" value="@a.ID" />
-                        <button class="btn btn-primary">Elimina</button>
+                        <button class="btn btn-danger">Elimina</button>
                     }
                 </td>
             </tr>
