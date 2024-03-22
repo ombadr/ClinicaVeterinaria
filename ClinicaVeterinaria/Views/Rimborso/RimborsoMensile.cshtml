@@ -13,7 +13,7 @@
 <h2>Rimborsi Mensili</h2>
 
 <div class="d-flex justify-content-end">
-    @Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", null, new { @class = "add btn btn-success mb-3" })
+    @Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", null, new { @class = "btn btn-custom mb-3" })
 </div>
 
 <div class="table-responsive">
@@ -32,7 +32,7 @@
                 <tr>
                     <td>@rimborso.IDRicovero</td>
                     <td>Comune di Roma</td>
-                    <td>@rimborso.DataRimborso</td>
+                    <td>@rimborso.DataRimborso.ToShortDateString()</td>
                     <td>@rimborso.Importo</td>
                 </tr>
             }

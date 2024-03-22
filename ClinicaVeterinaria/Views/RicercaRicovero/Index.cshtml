@@ -3,7 +3,7 @@
 }
 
 <style>
-    h2 {
+    h2, h5 {
         color: rgb(4, 116, 124);
     }
 </style>
@@ -42,10 +42,10 @@
 
                     htmlContent += `<div class="card border-0" style="width: 20rem;">                           
                               <div class="card-body">
-                                <h5 class="card-title">${animale.Nome}</h5>
-                                <p class="card-text">Tipologia: ${animale.Tipologia}</p>`;
+                                <h5 class="card-title text-center mb-4">${animale.Nome}</h5>
+                                <p class="card-text"><strong>Tipologia:</strong> ${animale.Tipologia}</p>`;
                     if (animale.DataRicovero) {
-                        htmlContent += `<p class="card-text">Data di Ricovero: ${animale.DataRicovero}</p>`;
+                        htmlContent += `<p class="card-text"><strong>Data di Ricovero:</strong> ${animale.DataRicovero}</p>`;
                     }
                     htmlContent += `</div></div>`;
                 } else {               
