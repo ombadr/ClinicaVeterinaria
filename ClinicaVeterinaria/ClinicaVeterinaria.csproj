@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Assets\Styles\Vendite.css" />
     <Content Include="Assets\uploads\default.jpg" />
     <Content Include="Assets\uploads\dog-puppy-on-garden-royalty-free-image-1586966191.jpg" />
     <Content Include="Content\Assets\Farmacia 1.jpeg" />
@@ -306,6 +307,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\App_LocalResources\" />
+    <Folder Include="Content\Assets\App_LocalResources\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
