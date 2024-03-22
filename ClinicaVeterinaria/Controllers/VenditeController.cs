@@ -40,7 +40,7 @@ namespace ClinicaVeterinaria.Controllers
 
                 db.Vendite.Add(vendita);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Farmacia");
             }
             ViewBag.Prodotti = db.Prodotti.ToList();
             return View(vendita);
