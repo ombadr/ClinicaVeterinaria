@@ -5,18 +5,25 @@
     ViewBag.Title = "Elenco Ricoveri";
 }
 
+<style>
+    td,
+    h2,th {
+        color: rgb(4, 116, 124);
+    }
+</style>
+
 <h2 class="text-center">Elenco Ricoveri</h2>
 <div class="d-flex justify-content-end">
     <p>
-        <a href="@Url.Action("Aggiungi")" class="btn btn-primary add">Aggiungi Ricovero</a>
+        <a href="@Url.Action("Aggiungi")" class="btn btn-success add">Aggiungi Ricovero</a>
     </p>
 </div>
 
 @if (Model != null && Model.Any())
 {
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="bg-dark text-light">
+
+        <table class="table table-striped">
+            <thead>
                 <tr>
                     <th scope="col">Numero Identificativo</th>
                     <th scope="col">Foto</th>
@@ -39,15 +46,14 @@
                         <td class="align-middle">@ricovero.Animali.Nome</td>
                         <td class="align-middle">@ricovero.DataInizioRicovero.ToShortDateString()</td>
                         <td class="align-middle">
-                            @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-primary btn-sm" })
-                            @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-success btn-sm" })
                             @Html.ActionLink("Elimina", "Elimina", new { id = ricovero.ID }, new { @class = "btn btn-danger btn-sm" })
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
 }
 else
 {
