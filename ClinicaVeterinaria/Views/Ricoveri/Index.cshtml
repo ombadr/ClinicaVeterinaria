@@ -10,30 +10,37 @@
     <a href="@Url.Action("Aggiungi")" class="btn btn-primary">Aggiungi Ricovero</a>
 </p>
 
-<table class="table">
-    <tr>
-        <th>Numero Identificativo</th>
-        <th>Nome Animale</th>
-        <th>Data Inizio Ricovero</th>
-        <th>Foto</th>
-    </tr>
-    @foreach (var ricovero in Model)
-    {
+@if (Model != null && Model.Any())
+{
+    <table class="table">
         <tr>
-            <td>@ricovero.ID</td>
-            <td>@ricovero.Animali.Nome</td>
-            <td>@ricovero.DataInizioRicovero.ToShortDateString()</td>
-            <td>
-                @if(ricovero.Foto != null)
-                {
-                    <img src="@Url.Content(ricovero.Foto)" alt="foto ricovero" style="max-width:100px; max-height:100px;"/>
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-info btn-xs" })
-                @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-warning btn-xs" })
-                @Html.ActionLink("Elimina", "Elimina", new { id = ricovero.ID }, new { @class = "btn btn-danger btn-xs" })
-            </td>
+            <th>Numero Identificativo</th>
+            <th>Nome Animale</th>
+            <th>Data Inizio Ricovero</th>
+            <th>Foto</th>
         </tr>
-    }
-</table>
+        @foreach (var ricovero in Model)
+        {
+            <tr>
+                <td>@ricovero.ID</td>
+                <td>@ricovero.Animali.Nome</td>
+                <td>@ricovero.DataInizioRicovero.ToShortDateString()</td>
+                <td>
+                    @if (ricovero.Foto != null)
+                    {
+                        <img src="@Url.Content(ricovero.Foto)" alt="foto ricovero" style="max-width:100px; max-height:100px;" />
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-info btn-xs" })
+                    @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Elimina", "Elimina", new { id = ricovero.ID }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Non ci sono ricoveri registrati.</p>
+}
