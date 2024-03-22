@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ClinicaVeterinaria.Controllers
 {
+    [Authorize(Roles = "Farmacista")]
     public class MedicinaliVendutiController : Controller
     {
         DBContext db = new DBContext();
@@ -16,22 +17,8 @@ namespace ClinicaVeterinaria.Controllers
         {
             return View();
         }
-        //public JsonResult Sellfordata(DateTime searchdata)
-        //{
-        //    List<Vendite> vendite = db.Vendite.Where(x => x.DataVendita == searchdata).ToList();
-        //    List<Prodotti> prodotti = new List<Prodotti>();
-        //    foreach (Vendite v in vendite)
-        //    {
-        //        var a = db.Prodotti.Where(x => x.ID == v.ID).FirstOrDefault();
-        //        Prodotti prodotto = new Prodotti()
-        //        {
-        //            Nome = a.Nome
-        //        };
-        //        prodotti.Add(prodotto);
-        //    }
-        //    return Json(prodotti, JsonRequestBehavior.AllowGet);
-
-        //}
+     
+      
         public JsonResult Sellfordata(DateTime searchdata)
         {
             List<Vendite> vendite = db.Vendite.Where(x => DbFunctions.TruncateTime(x.DataVendita) == DbFunctions.TruncateTime(searchdata)).ToList();
