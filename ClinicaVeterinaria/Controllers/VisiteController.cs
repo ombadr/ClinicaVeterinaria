@@ -11,16 +11,13 @@ namespace ClinicaVeterinaria.Controllers
     [Authorize(Roles = "Veterinario")]
     public class VisiteController : Controller
     {
-        // Dichiarazione del contesto del database all'esterno del metodo
         private readonly DBContext db = new DBContext();
 
         // GET: Visite
         public ActionResult Index()
         {
-            // Recupera la lista delle visite veterinarie dal database
             var visiteList = db.Visite.ToList();
 
-            // Assicurati che la vista sia correttamente configurata per mostrare le visite
             return View(visiteList);
         }
 
@@ -47,50 +44,9 @@ namespace ClinicaVeterinaria.Controllers
             return Json(visite, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult AggiungiVisita(Visite visita)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-
-        //            //visita.IDAnimale = 1;
-
-        //            // var animale = db.Animali.Find(visita.IDAnimale);
-        //            //if (animale == null)
-        //            //{
-
-        //            //    ModelState.AddModelError(string.Empty, "L'animale specificato non esiste.");
-        //            //    ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-        //            //    return View(visita);
-        //            //}
-
-
-        //            db.Visite.Add(visita);
-        //            db.SaveChanges();
-
-
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //            ModelState.AddModelError(string.Empty, "Si è verificato un errore durante l'aggiunta della visita.");
-        //            ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-        //            return View(visita);
-        //        }
-        //    }
-
-
-        //    ViewBag.Animali = new SelectList(db.Animali, "ID", "Nome");
-        //    return View(visita);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registra(Visite visita)
+        public ActionResult Registra([Bind(Include = "IDAnimale,DataVisita,EsameObiettivo,CuraPrescritta")]  Visite visita)
         {
 
             if (ModelState.IsValid)
@@ -119,9 +75,6 @@ namespace ClinicaVeterinaria.Controllers
             ViewBag.Animali = new SelectList(db.Animali.ToList(), "ID", "Nome", visita.IDAnimale);
             return View(visita);
         }
-
-
-
 
     }
 }

@@ -4,66 +4,79 @@
     ViewBag.Title = "Aggiungi Visita";
 }
 
-<h2>Aggiungi Visita</h2>
+<style>
+    label,
+    h2,h3 {
+        color: rgb(4, 116, 124);
+    }
+    th,tr {
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-@using (Html.BeginForm("Registra", "Visite", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Aggiungi Visita</h2>
 
+                    @using (Html.BeginForm("Registra", "Visite", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
 
-    <select name="IDAnimale" class="form-control">
-        <option value="">Seleziona un animale...</option>
-        @foreach (SelectListItem a in ViewBag.AnimaliDropdown)
-        {
-            <option value="@a.Value">
-                @a.Text
-            </option>
-        }
+                        <select name="IDAnimale" class="form-control mt-3">
+                            <option value="">Seleziona un animale...</option>
+                            @foreach (SelectListItem a in ViewBag.AnimaliDropdown)
+                            {
+                                <option value="@a.Value">@a.Text</option>
+                            }
+                        </select>
 
-    </select>
+                        <div class="form-group mb-2 mt-2">
+                            @Html.LabelFor(model => model.DataVisita, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DataVisita, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                                @Html.ValidationMessageFor(model => model.DataVisita, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
+                        <div class="form-group test mb-2">
+                            @Html.LabelFor(model => model.EsameObiettivo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EsameObiettivo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EsameObiettivo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-    <div class="form-group ">
-        @Html.LabelFor(model => model.DataVisita, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DataVisita, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
-            @Html.ValidationMessageFor(model => model.DataVisita, "", new { @class = "text-danger" })
+                        <div class="form-group mb-4">
+                            @Html.LabelFor(model => model.CuraPrescritta, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.CuraPrescritta, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CuraPrescritta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Aggiungi" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="card-subtitle mb-2">Anamnesi animale selezionato</h3>
+                            <div id="visiteContainer"></div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EsameObiettivo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EsameObiettivo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.EsameObiettivo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CuraPrescritta, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CuraPrescritta, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CuraPrescritta, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Aggiungi" class="btn btn-primary" />
-        </div>
-    </div>
-
-    <div>
-        <h1>Anamnesi animale selezionato</h1>
-        <div id="visiteContainer"></div>
-    </div>
-}
+</div>
 
 @section Scripts{
     <script>
         $(document).ready(function () {
-
             $('select[name="IDAnimale"]').change(function () {
                 var animaleId = $(this).val();
                 if (animaleId) {
@@ -72,22 +85,19 @@
                         type: 'GET',
                         data: { animaleId: animaleId },
                         success: function (data) {
-
                             var tableHtml = '<table class="table"><thead><tr><th>Data Visita</th><th>Esame Obiettivo</th><th>Cura Prescritta</th></tr></thead><tbody>';
                             $.each(data, function (i, visita) {
                                 var match = visita.DataVisita.match(/\/Date\((\d+)\)\//);
                                 if (match) {
                                     var date = new Date(parseInt(match[1]));
                                     var formattedDate = date.toLocaleDateString('it-IT');
-
-                                tableHtml += '<tr><td>' + formattedDate + '</td><td>' + visita.EsameObiettivo + '</td><td>' + visita.CuraPrescritta + '</td></tr>';
+                                    tableHtml += '<tr><td>' + formattedDate + '</td><td>' + visita.EsameObiettivo + '</td><td>' + visita.CuraPrescritta + '</td></tr>';
                                 }
                             });
                             tableHtml += '</tbody></table>';
                             $('#visiteContainer').html(tableHtml);
                         },
                         error: function(xhr, status, error) {
-
                             console.error("Errore AJAX: ", status, error);
                             $('#visiteContainer').html('<p>Si è verificato un errore nel caricamento delle visite.</p>');
                         }

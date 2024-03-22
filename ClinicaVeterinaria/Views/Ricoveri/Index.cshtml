@@ -1,44 +1,59 @@
 ﻿@model IEnumerable<ClinicaVeterinaria.Models.Ricoveri>
+<link href="~/Assets/css/Ricoveri.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Elenco Ricoveri";
 }
 
-<h2>Elenco Ricoveri</h2>
+<style>
+    td,
+    h2,th {
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-<p>
-    <a href="@Url.Action("Aggiungi")" class="btn btn-primary">Aggiungi Ricovero</a>
-</p>
+<h2 class="text-center">Elenco Ricoveri</h2>
+<div class="d-flex justify-content-end">
+    <p>
+        <a href="@Url.Action("Aggiungi")" class="btn btn-success add">Aggiungi Ricovero</a>
+    </p>
+</div>
 
 @if (Model != null && Model.Any())
 {
-    <table class="table">
-        <tr>
-            <th>Numero Identificativo</th>
-            <th>Nome Animale</th>
-            <th>Data Inizio Ricovero</th>
-            <th>Foto</th>
-        </tr>
-        @foreach (var ricovero in Model)
-        {
-            <tr>
-                <td>@ricovero.ID</td>
-                <td>@ricovero.Animali.Nome</td>
-                <td>@ricovero.DataInizioRicovero.ToShortDateString()</td>
-                <td>
-                    @if (ricovero.Foto != null)
-                    {
-                        <img src="@Url.Content(ricovero.Foto)" alt="foto ricovero" style="max-width:100px; max-height:100px;" />
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-info btn-xs" })
-                    @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-warning btn-xs" })
-                    @Html.ActionLink("Elimina", "Elimina", new { id = ricovero.ID }, new { @class = "btn btn-danger btn-xs" })
-                </td>
-            </tr>
-        }
-    </table>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Numero Identificativo</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Nome Animale</th>
+                    <th scope="col">Data Inizio Ricovero</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ricovero in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@ricovero.ID</td>
+                        <td class="align-middle">
+                            @if (ricovero.Foto != null)
+                            {
+                                <img src="@Url.Content(ricovero.Foto)" alt="foto ricovero" style="max-width:150px; max-height:150px;" />
+                            }
+                        </td>
+                        <td class="align-middle">@ricovero.Animali.Nome</td>
+                        <td class="align-middle">@ricovero.DataInizioRicovero.ToShortDateString()</td>
+                        <td class="align-middle">
+                            @Html.ActionLink("Dettagli", "Details", new { id = ricovero.ID }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Modifica", "Modifica", new { id = ricovero.ID }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Elimina", "Elimina", new { id = ricovero.ID }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 }
 else
 {

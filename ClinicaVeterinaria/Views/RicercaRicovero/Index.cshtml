@@ -2,22 +2,33 @@
     ViewBag.Title = "Ricerca Microchip";
 }
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 class="mb-4 text-center">Cerca il Tuo Animale per Numero di Microchip</h2>
+<style>
+    h2 {
+        color: rgb(4, 116, 124);
+    }
+</style>
+
+<div class="container mt-5 ms-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <img src="~/Assets/uploads/search.jpg" class="img-fluid rounded" alt="Immagine di ricerca" id="imgCont" />
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-4">Inserisci il numero del microchip</h2>
             <div class="input-group mb-3">
-                <input type="text" id="microchipInput" class="form-control" placeholder="Inserisci il numero del microchip">
+                <input type="text" id="microchipInput" class="form-control me-3 rounded" placeholder="Inserisci il numero del microchip">
                 <div class="input-group-append">
-                    <button onclick="cercaAnimale()" class="btn btn-outline-secondary">Cerca</button>
+                    <button onclick="cercaAnimale()" class="btn btn-custom">Cerca</button>
                 </div>
             </div>
-            <div id="risultatoRicerca"></div>
+            <div id="risultatoRicerca">
+            </div>
         </div>
     </div>
 </div>
 
-<script>function cercaAnimale() {
+<script>
+    function cercaAnimale() {
         const numeroMicrochip = document.getElementById('microchipInput').value;
         fetch(`/RicercaRicovero/CercaAnimalePerMicrochip?numeroMicrochip=${numeroMicrochip}`)
             .then(response => response.json())
@@ -25,19 +36,22 @@
                 let htmlContent = '';
                 if (data.success) {
                     const animale = data.data;
-                    htmlContent += `<div class="card" style="width: 20rem;">
-                                  <img src="${animale.Foto ? animale.Foto.replace("~", "") : '/Assets/uploads/default.jpg'}" class="card-img-top" alt="Foto di ${animale.Nome}" style="max-width: 100%; height: auto;">
-                                  <div class="card-body">
-                                    <h5 class="card-title">${animale.Nome}</h5>
-                                    <p class="card-text">Tipologia: ${animale.Tipologia}</p>`;
+                    const imgElement = document.getElementById('imgCont');
+                    imgElement.src = animale.Foto.replace("~", "");
+                    imgElement.alt = `Foto di ${animale.Nome}`;
+
+                    htmlContent += `<div class="card border-0" style="width: 20rem;">                           
+                              <div class="card-body">
+                                <h5 class="card-title">${animale.Nome}</h5>
+                                <p class="card-text">Tipologia: ${animale.Tipologia}</p>`;
                     if (animale.DataRicovero) {
                         htmlContent += `<p class="card-text">Data di Ricovero: ${animale.DataRicovero}</p>`;
                     }
                     htmlContent += `</div></div>`;
-                } else {
+                } else {               
                     htmlContent = `<div class="alert alert-danger" role="alert">
-                                 ${data.message}
-                               </div>`;
+                             ${data.message}
+                           </div>`;
                 }
                 document.getElementById('risultatoRicerca').innerHTML = htmlContent;
             })
@@ -45,4 +59,5 @@
                 console.log(error);
                 document.getElementById('risultatoRicerca').innerHTML = `<div class="alert alert-danger" role="alert">Animale non trovato</div>`;
             });
-    }</script>
+    }
+</script>

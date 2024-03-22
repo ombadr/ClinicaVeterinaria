@@ -4,14 +4,17 @@
     ViewBag.Title = "Elimina Prodotto";
 }
 
-<h2>Sei sicuro di voler eliminare questo prodotto?</h2>
+<div class="container">
+    <h2 class="text-danger">@ViewBag.Title</h2>
+    <p class="lead">Sei sicuro di voler eliminare questo prodotto?</p>
 
-<div>
-    <h3>@Model.Nome</h3>
-    <p>Ditta Fornitrice: @Model.DittaFornitrice</p>
-    <p>Uso Possibile: @Model.UsoPossibile</p>
+    <div class="well">
+        <h3>@Model.Nome</h3>
+        <p><strong>Ditta Fornitrice:</strong> @Model.DittaFornitrice</p>
+        <p><strong>Uso Possibile:</strong> @Model.UsoPossibile</p>
+    </div>
 
-    @using (Html.BeginForm("Delete", "Prodotti", FormMethod.Post))
+    @using (Html.BeginForm("Delete", "Prodotti", FormMethod.Post, new { @class = "form-inline" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.ID)

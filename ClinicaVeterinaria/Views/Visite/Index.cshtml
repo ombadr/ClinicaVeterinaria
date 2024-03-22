@@ -4,14 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    h2,th,td{
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-
-
+<h2 class="text-center">Visite</h2>
 
 
 <div class="container">
-    <h2>Elenco Visite Veterinarie</h2>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,12 +31,12 @@
                 <tr>
                     <td>@visita.ID</td>
                     <td>@visita.IDAnimale</td>
-                    <td>@visita.DataVisita.ToShortDateString()</td> <!-- Assicurati che DataVisita sia un oggetto DateTime -->
+                    <td>@visita.DataVisita.ToShortDateString()</td>
                     <td>@visita.EsameObiettivo</td>
                     <td>@visita.CuraPrescritta</td>
                 </tr>
             }
         </tbody>
     </table>
-    <a href="@Url.Action("Registra", "Visite")" class="btn btn-primary">Aggiungi Visita</a>
+    <a href="@Url.Action("Registra", "Visite")" class="btn btn-success">Aggiungi Visita</a>
 </div>

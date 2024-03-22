@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.custom-nav {
+    background-color: rgb(57, 240, 255);
+}
+
+.text-custom {
+    color: rgb(4,116,124);
+}
+
+.btn-custom, btn-default {
+    background-color: rgb(4, 116, 124);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.section-contact {
+    background-color: #c3e7f4;
+}
+
+
+
+
+
+

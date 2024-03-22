@@ -4,27 +4,42 @@
     ViewBag.Title = "Dettagli Ricovero";
 }
 
-<h2>Dettagli Ricovero</h2>
 
-<div>
-    <dl class="dl-horizontal">
-        <dt>Nome Animale</dt>
-        <dd>@Model.Animali.Nome</dd>
-        <dt>Data Inizio Ricovero</dt>
-        <dd>@Model.DataInizioRicovero.ToShortDateString()</dd>
-        <dt>Foto</dt>
-        <dd><img src="@Url.Content(Model.Foto)" alt="Foto animale" width="200" /></dd>
-        <dt>Tipologia</dt>
-        <dd>@Model.Animali.Tipologia</dd>
-        <dt>Colore Mantello</dt>
-        <dd>@Model.Animali.ColoreMantello</dd>
-        <dt>Numero Microchip</dt>
-        <dd>@Model.Animali.NumeroMicrochip</dd>
-    </dl>
-</div>
+<style>
+    h2,dd,dt {
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-<div>
-    <p>
-        <a href="@Url.Action("Index")" class="btn btn-primary">Torna all'elenco</a>
-    </p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Dettagli Ricovero</h2>
+
+                    <div class="text-center">
+                        <img src="@Url.Content(Model.Foto)" alt="Foto animale" class="img-thumbnail mb-3" style="max-width: 300px;" />
+                    </div>
+
+                    <dl class=" text-center">
+                        <dt>Nome Animale</dt>
+                        <dd>@Model.Animali.Nome</dd>
+                        <dt>Data Inizio Ricovero</dt>
+                        <dd>@Model.DataInizioRicovero.ToShortDateString()</dd>
+                        <dt>Tipologia</dt>
+                        <dd>@Model.Animali.Tipologia</dd>
+                        <dt>Colore Mantello</dt>
+                        <dd>@Model.Animali.ColoreMantello</dd>
+                        <dt>Numero Microchip</dt>
+                        <dd>@Model.Animali.NumeroMicrochip</dd>
+                    </dl>
+
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("Index")" class="btn btn-success">Torna all'elenco</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

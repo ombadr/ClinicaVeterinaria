@@ -104,14 +104,26 @@ namespace ClinicaVeterinaria.Controllers
             }
             return View(prodotto);
         }
-        // POST: Prodotti/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Prodotti prodotto = _context.Prodotti.Find(id);
-            _context.Prodotti.Remove(prodotto);
-            _context.SaveChanges();
+            if (prodotto != null)
+            {
+                var disposizioni = _context.DisposizioneMedicinali.Where(d => d.IDProdotto == id).ToList();
+                foreach (var disposizione in disposizioni)
+                {
+                    _context.DisposizioneMedicinali.Remove(disposizione);
+                }
+
+                _context.Prodotti.Remove(prodotto);
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Prodotto rimosso con successo!";
+                return RedirectToAction("Index");
+
+            }
+
             return RedirectToAction("Index");
         }
         // GET: Prodotti/Create
@@ -170,15 +182,5 @@ namespace ClinicaVeterinaria.Controllers
             return View("Index", risultatiRicerca);
         }
 
-
-
-
-
-
-
-
     }
-
-
-
 }

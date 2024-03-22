@@ -37,7 +37,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Aggiungi(Ricoveri ricovero, HttpPostedFileBase Foto)
+        public ActionResult Aggiungi([Bind(Include = "ID,IDAnimale,DataInizio,DataFine,Descrizione,Foto")] Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifica(Ricoveri ricovero, HttpPostedFileBase Foto)
+        public ActionResult Modifica([Bind(Include = "ID,IDAnimale,DataInizio,DataFine,Descrizione,Foto")] Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
