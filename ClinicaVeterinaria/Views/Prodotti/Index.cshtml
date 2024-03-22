@@ -47,3 +47,29 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const fadeOut = (element, speed) => {
+                let op = 1;  
+                const timer = setInterval(() => {
+                    if (op <= 0.1) {
+                        clearInterval(timer);
+                        element.style.display = 'none';
+                        element.remove();
+                    }
+                    element.style.opacity = op;
+                    element.style.filter = 'alpha(opacity=' + op * 100 + ")";  
+                    op -= op * 0.1;
+                }, speed / 50);  
+            };
+
+            document.querySelectorAll('.alert').forEach(alert => {
+                setTimeout(() => fadeOut(alert, 1000), 4000); 
+            });
+        });
+    </script>
+}
+
+
