@@ -46,20 +46,20 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #dc3545;
+        background-color: rgb(4, 116, 124);
         color: white;
         font-weight: bold;
         cursor: pointer;
     }
 
         .btn-register:hover {
-            background-color: #c82333;
+            background-color: #39F0FF;
         }
 </style>
 
 <div class="register-container">
     <div class="register-form">
-        <h2>Register</h2>
+        <h2>Registrazione</h2>
 
         @using (Html.BeginForm())
         {
@@ -85,7 +85,7 @@
                 @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", placeholder = "Inserisci la tua password" })
             </div>
 
-            <button type="submit" class="btn-register">Register</button>
+            <button type="submit" class="btn-register">Registrati</button>
         }
     </div>
 </div>
