@@ -31,7 +31,7 @@
                 if (data.success) {
                     const animale = data.data;
                     const imgElement = document.getElementById('imgCont');
-                    imgElement.src = animale.Foto;
+                    imgElement.src = animale.Foto.replace("~", "");
                     imgElement.alt = `Foto di ${animale.Nome}`;
 
                     htmlContent += `<div class="card border-0" style="width: 20rem;">                           
