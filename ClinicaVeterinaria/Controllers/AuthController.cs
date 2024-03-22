@@ -22,7 +22,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include = "Email,PasswordHash")]Utenti user, bool? keepLogged)
+        public ActionResult Login( Utenti user, bool? keepLogged)
         {
             bool keepUserLogged = keepLogged.HasValue && keepLogged.Value;
             var loggedUser = db.Utenti.FirstOrDefault(u => u.Email == user.Email);

@@ -35,8 +35,10 @@
                         </div>
                         <div class="mb-2">
                             <label>Microchip:</label>
-                            <input type="radio" name="Microchip" value="true" />
-                            <input type="radio" name="Microchip" value="false" />
+                            <input type="radio" id="microchipYes" name="Microchip" value="true" />
+                            <label for="microchipYes">Sì</label>
+                            <input type="radio" id="microchipNo" name="Microchip" value="false" />
+                            <label for="microchipNo">No</label>
                         </div>
                         <div class="mb-2">
                             <label>Numero Microchip:</label>
@@ -50,7 +52,7 @@
                             <label>Cognome del proprietario:</label>
                             <input type="text" name="CognomeProprietario" class="form-control" />
                         </div>
-                        <button class="btn btn-success mt-3">Registra</button>
+                        <button class="btn btn-custom mt-3">Registra</button>
                     }
                 </div>
             </div>
