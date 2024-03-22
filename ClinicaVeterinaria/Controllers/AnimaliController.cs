@@ -16,7 +16,7 @@ namespace ClinicaVeterinaria.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Animali animali)
+        public ActionResult Index([Bind(Include = "Nome,Tipologia,ColoreMantello,DataNascita,Microchip,NumeroMicrochip,NomeProprietario,CognomeProprietario")] Animali animali)
         {
 
             var animale = new Animali()
@@ -33,9 +33,9 @@ namespace ClinicaVeterinaria.Controllers
             db.Animali.Add(animale);
             db.SaveChanges();
             TempData["ConfermaAnimale"] = true;
-            return RedirectToAction("Index");
+            return RedirectToAction("Lista");
         }
-        [HttpPost]
+       
         public ActionResult Dettagli(int ID)
         {
             Animali animale = db.Animali.Where(x => x.ID == ID).FirstOrDefault();
@@ -49,7 +49,7 @@ namespace ClinicaVeterinaria.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Modifica(Animali animali)
+        public ActionResult Modifica([Bind(Include = "ID,Nome,Tipologia,ColoreMantello,DataNascita,Microchip,NumeroMicrochip,NomeProprietario,CognomeProprietario")] Animali animali)
         {
             var animale = db.Animali.Where(x => x.ID == animali.ID).FirstOrDefault();
             if (animale != null)

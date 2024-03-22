@@ -41,7 +41,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Aggiungi(RimborsiRicoveri rimborso)
+        public ActionResult Aggiungi([Bind(Include = "IDRicovero,Importo,DataRimborso")] RimborsiRicoveri rimborso)
         {
             if (ModelState.IsValid)
             {

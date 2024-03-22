@@ -24,7 +24,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Vendite vendita)
+        public ActionResult Create([Bind(Include = "CodiceFiscaleCliente,IDProdotto,NumeroRicettaMedica")] Vendite vendita)
         {
             if (ModelState.IsValid)
             {
