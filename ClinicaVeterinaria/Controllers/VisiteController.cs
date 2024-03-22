@@ -46,7 +46,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registra(Visite visita)
+        public ActionResult Registra([Bind(Include = "IDAnimale,DataVisita,EsameObiettivo,CuraPrescritta")]  Visite visita)
         {
 
             if (ModelState.IsValid)
