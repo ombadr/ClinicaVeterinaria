@@ -4,56 +4,80 @@
     ViewBag.Title = "Modifica Prodotto";
 }
 
-<h2>Modifica Prodotto</h2>
+<style>
+    h2, label {
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Prodotto</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.ID)
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Modifica Prodotto</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome)
-                @Html.ValidationMessageFor(model => model.Nome)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.ID)
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DittaFornitrice, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DittaFornitrice)
-                @Html.ValidationMessageFor(model => model.DittaFornitrice)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UsoPossibile, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UsoPossibile)
-                @Html.ValidationMessageFor(model => model.UsoPossibile)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DittaFornitrice,"Ditta Fornitrice", htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DittaFornitrice, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DittaFornitrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salva" class="btn btn-custom" />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UsoPossibile,"Uso Possibile", htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UsoPossibile, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UsoPossibile, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Codice Armadietto", new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBox("CodiceArmadietto", (int?)ViewBag.CodiceArmadietto, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Codice Cassetto", new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBox("CodiceCassetto", (int?)ViewBag.CodiceCassetto, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Salva" class="btn btn-custom my-3" />
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Indietro all'elenco", "Index")
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-

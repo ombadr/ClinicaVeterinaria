@@ -1,36 +1,105 @@
 ﻿@model ClinicaVeterinaria.Models.Prodotti
+<link href="~/Assets/css/Ricoveri.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Crea Nuovo Prodotto";
 }
 
-<h2>@ViewBag.Title</h2>
+<style>
+    h2,h4, label {
+        color: rgb(4, 116, 124);
+    }
+</style>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Registra Prodotto</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "Prodotti", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Prodotto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.EditorFor(model => model.Nome)
-        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                        
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @Html.EditorFor(model => model.DittaFornitrice)
-        @Html.ValidationMessageFor(model => model.DittaFornitrice, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-        @Html.EditorFor(model => model.UsoPossibile)
-        @Html.ValidationMessageFor(model => model.UsoPossibile, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DittaFornitrice,"Ditta Fornitrice", htmlAttributes: new { @class = "control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DittaFornitrice, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DittaFornitrice, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crea" class="btn btn-default" />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UsoPossibile, "Uso Possibile", htmlAttributes: new { @class = "control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UsoPossibile, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UsoPossibile, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h4 class="text-center mt-3">Disposizione Medicinali</h4>
+                            <div class="form-group">
+                                @Html.Label("Codice Armadietto", new { @class = "control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("CodiceArmadietto", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Cassetto", new { @class = "control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("CodiceCassetto", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Crea" class="btn btn-custom mt-2" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const fadeOut = (element, speed) => {
+                let op = 1;
+                const timer = setInterval(() => {
+                    if (op <= 0.1) {
+                        clearInterval(timer);
+                        element.style.display = 'none';
+                        element.remove();
+                    }
+                    element.style.opacity = op;
+                    element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                    op -= op * 0.1;
+                }, speed / 50);
+            };
+
+            document.querySelectorAll('.alert').forEach(alert => {
+                setTimeout(() => fadeOut(alert, 1000), 4000);
+            });
+        });</script>
 }
 
-<div>
-    @Html.ActionLink("Indietro all'elenco", "Index")
-</div>

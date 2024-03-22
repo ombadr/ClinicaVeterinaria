@@ -1,0 +1,61 @@
+﻿@model ClinicaVeterinaria.Models.RimborsiRicoveri
+<link href="~/Assets/css/Ricoveri.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Aggiungi";
+}
+
+<style>
+    h2, label{
+        color: rgb(4, 116, 124);
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    <h2 class="card-title">Aggiungi Rimborso</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Aggiungi", "Rimborso", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group mb-3">
+                            <label class="control-label " for="IDRicovero">Numero Identificativo</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IDRicovero, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IDRicovero, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="control-label" for="Importo">Importo</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Importo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Importo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="control-label" for="DataRimborso">Data Rimborso</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="date" id="DataRimborso" name="DataRimborso" />
+                                @Html.ValidationMessageFor(model => model.DataRimborso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10 mt-4">
+                                <input type="submit" value="Aggiungi" class=" btn btn-custom" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

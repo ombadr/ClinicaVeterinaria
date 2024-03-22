@@ -3,31 +3,89 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
+<style>
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 
-@using (Html.BeginForm())
-{
+    .register-form {
+        width: 400px;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    }
 
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(m => m.Nome)
-        @Html.TextBoxFor(m => m.Nome, "", new { @class = "form-control" })
+        .register-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-register {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(4, 116, 124);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .btn-register:hover {
+            background-color: #39F0FF;
+        }
+</style>
+
+<div class="register-container">
+    <div class="register-form">
+        <h2>Registrazione</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", placeholder = "Inserisci il tuo nome" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cognome, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control", placeholder = "Inserisci il tuo cognome" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Inserisci il tuo indirizzo email" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PasswordHash, "Password", new { @class = "form-label" })
+                @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", placeholder = "Inserisci la tua password" })
+            </div>
+
+            <button type="submit" class="btn-register">Registrati</button>
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Cognome)
-        @Html.TextBoxFor(m => m.Cognome, "", new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control" })
-    </div>
-
-    <div class="form-group my-3">
-        @Html.LabelFor(m => m.PasswordHash, "Password")
-        @Html.TextBoxFor(m => m.PasswordHash, "", new { @class = "form-control", type = "password" })
-    </div>
-
-    <button type="submit" class="btn btn-danger">Register</button>
-}
+</div>

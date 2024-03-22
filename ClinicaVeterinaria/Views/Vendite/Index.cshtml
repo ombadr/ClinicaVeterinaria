@@ -1,0 +1,29 @@
+@model List<ClinicaVeterinaria.Models.Vendite>
+
+<link rel="stylesheet" href="~/Assets/Styles/Vendite.css" />
+
+<h2>Elenco delle Vendite</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Codice Fiscale Cliente</th>
+            <th>ID Prodotto</th>
+            <th>Numero Ricetta Medica</th>
+            <th>Data Vendita</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vendita in Model.OrderByDescending(v => v.DataVendita))
+        {
+            <tr>
+                <td>@vendita.ID</td>
+                <td>@vendita.CodiceFiscaleCliente</td>
+                <td>@vendita.IDProdotto</td>
+                <td>@vendita.NumeroRicettaMedica</td>
+                <td>@vendita.DataVendita.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Vendite Per Data";
+}
+<style>
+    h2, label, th, tr {
+        color: rgb(4, 116, 124);
+    }
+</style>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mt-5">
+                <div class="card-header">
+
+                    <h2 class="text-center">Vendite Per Data</h2>
+                </div>
+                <div class="card-body form-group">
+                    <label class="d-block mb-2">Inserisci la data per il quale vuoi controllare le vendite:</label>
+                    <input id="searchdate" type="date" class="form-control" />
+                    <input type="button" id="searchbtn" value="Cerca" class="btn btn-custom my-3" />
+                </div>
+                <div>
+
+                <div id="resultsTable" style="display:none;">
+                    <table class="table table-striped" >
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Ditta Fornitrice</th>
+                                <th>Uso Possibile</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results"></tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#searchbtn').click(function () {
+                var resultsBody = $('#results');
+                resultsBody.html("");
+                $.ajax({
+                    url: '/MedicinaliVenduti/Sellfordata',
+                    type: 'GET',
+                    data: { searchdata: $('#searchdate').val() },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.length > 0) {
+                            $.each(data, function (index, value) {
+                                var row = "<tr>" +
+                                    "<td>" + value.Nome + "</td>" +
+                                    "<td>" + (value.DittaFornitrice || "Non disponibile") + "</td>" +
+                                    "<td>" + (value.UsoPossibile || "Non disponibile") + "</td>" +
+                                    "</tr>";
+                                resultsBody.append(row);
+                            });
+                            $('#resultsTable').show();
+                        } else {
+                            $('#resultsTable').hide();
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+
+}

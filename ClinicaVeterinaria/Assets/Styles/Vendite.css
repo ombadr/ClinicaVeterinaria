@@ -1,0 +1,44 @@
+﻿.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.font {
+    font-size: 1.3em;
+}
+
+h2 {
+    color: rgb(4, 116, 124);
+}
+.btn-default {
+    background-color: rgb(4, 116, 124);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+    .btn-default:hover {
+        background-color: white;
+        color: rgb(4, 116, 124);
+    }
+
+    .customdivendite,h2{
+        margin:1%;
+    }
+
+    .customdivendite>label{
+        margin:2px;
+        text-align:center;
+    }
+
+td:hover {
+    transform: scale(1.1) translateX(4%);
+    color: rgb(4, 116, 124);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}

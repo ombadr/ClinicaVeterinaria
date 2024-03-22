@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Vendite Per Cliente";
+}
+
+<style>
+    h2, label, th, tr {
+        color: rgb(4, 116, 124);
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="text-center">Vendite Per Cliente</h2>
+                </div>
+                <div class="card-body form-group p-0">
+                    <label class="d-block my-2 ms-3">Inserisci il codice fiscale per il quale vuoi controllare le vendite</label>
+                    <input id="searchcf" type="text" class="form-control ms-3" />
+                    <input type="button" id="searchbtn" value="Cerca" class="btn btn-custom my-3 ms-3" />
+                    <div id="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#searchbtn').click(function () {
+                var searchResults = $('#results');
+                searchResults.html("");
+
+                $.ajax({
+                    url: '/MedicinaliVenduti/SellforCf',
+                    type: 'GET',
+                    data: { cf: $('#searchcf').val() },
+                    success: function (data) {
+                        console.log(data);
+                  
+                        if (data.length > 0) {
+                            var table = $("<table class='table table-striped'><thead><tr><th>Nome</th><th>Ditta Fornitrice</th><th>Uso Possibile</th></tr></thead><tbody></tbody></table>");
+                            $.each(data, function (index, value) {
+                                var row = $("<tr></tr>");
+                                row.append($("<td></td>").text(value.Nome));
+                                row.append($("<td></td>").text(value.DittaFornitrice || "Non specificato"));
+                                row.append($("<td></td>").text(value.UsoPossibile || "Non specificato"));
+                                table.append(row);
+                            });
+                            searchResults.append(table);
+                        } else {
+                            searchResults.html("<p>Nessun risultato trovato.</p>");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Errore AJAX: ", status, error);
+                        searchResults.html('<p>Si è verificato un errore nel caricamento dei dati.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+}

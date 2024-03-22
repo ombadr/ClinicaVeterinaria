@@ -1,0 +1,46 @@
+@model ClinicaVeterinaria.Models.Vendite
+<link rel="stylesheet" href="~/Assets/Styles/Vendite.css" />
+<style>
+    label {
+        color: rgb(4, 116, 124);
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Nuova Vendita</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group custom-form-group">
+                            <label for="CodiceFiscaleCliente" class="control-label custom-label">Codice Fiscale Cliente</label>
+                            @Html.EditorFor(model => model.CodiceFiscaleCliente, new { htmlAttributes = new { @class = "form-control custom-input" } })
+                            @Html.ValidationMessageFor(model => model.CodiceFiscaleCliente, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group custom-form-group">
+                            <label for="IDProdotto" class="control-label custom-label">ID Prodotto</label>
+                            @Html.EditorFor(model => model.IDProdotto, new { htmlAttributes = new { @class = "form-control custom-input" } })
+                            @Html.ValidationMessageFor(model => model.IDProdotto, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group custom-form-group">
+                            <label for="NumeroRicettaMedica" class="control-label custom-label">Numero Ricetta Medica</label>
+                            @Html.EditorFor(model => model.NumeroRicettaMedica, new { htmlAttributes = new { @class = "form-control custom-input" } })
+                            @Html.ValidationMessageFor(model => model.NumeroRicettaMedica, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group custom-form-group m-1">
+                            <input type="submit" value="Salva" class="btn btn-default custom-submit-btn my-3" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,13 +15,13 @@ namespace ClinicaVeterinaria.Controllers
 
         public ActionResult Index()
         {
-            var ricoveri = db.Ricoveri.ToList();
+            var ricoveri = db.Ricoveri.Include(r => r.Animali).ToList();
             return View(ricoveri);
         }
 
         public ActionResult Details(int id)
         {
-            var ricovero = db.Ricoveri.Find(id);
+            var ricovero = db.Ricoveri.Include(r => r.Animali).SingleOrDefault(r => r.ID == id);
             if (ricovero == null)
             {
                 return HttpNotFound();
@@ -37,7 +37,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Aggiungi(Ricoveri ricovero, HttpPostedFileBase Foto)
+        public ActionResult Aggiungi([Bind(Include = "ID,IDAnimale,DataInizio,DataFine,Descrizione,Foto")] Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {
@@ -52,6 +52,7 @@ namespace ClinicaVeterinaria.Controllers
                 db.Ricoveri.Add(ricovero);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+       
             }
 
             ViewBag.AnimaliList = new SelectList(db.Animali.ToList(), "ID", "Nome");
@@ -73,7 +74,7 @@ namespace ClinicaVeterinaria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifica(Ricoveri ricovero, HttpPostedFileBase Foto)
+        public ActionResult Modifica([Bind(Include = "ID,IDAnimale,DataInizio,DataFine,Descrizione,Foto")] Ricoveri ricovero, HttpPostedFileBase Foto)
         {
             if (ModelState.IsValid)
             {

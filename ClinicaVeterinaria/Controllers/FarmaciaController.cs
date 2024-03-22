@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ClinicaVeterinaria.Controllers
 {
+    [Authorize(Roles = "Farmacista")]
     public class FarmaciaController : Controller
     {
         // GET: Farmacia
