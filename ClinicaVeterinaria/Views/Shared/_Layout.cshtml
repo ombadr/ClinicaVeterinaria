@@ -53,7 +53,7 @@
                             <li>@Html.ActionLink("Lista Ricoveri", "Index", "Ricoveri", new { area = "" }, new { @class = "dropdown-item" })</li>
                             <li>@Html.ActionLink("Aggiungi Ricovero", "Aggiungi", "Ricoveri", new { area = "" }, new { @class = "dropdown-item" })</li>
                             <li>@Html.ActionLink("Rimborso Mensile", "RimborsoMensile", "Rimborso", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Aggiungi Rimborso", "Aggiungi", "Rimborso", new { area = "" }, new { @class = "dropdown-item" })</li>
+                           
                         </ul>
                     </li>
 
@@ -81,7 +81,7 @@
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <a href="@Url.Action("Login", "Auth", new { area = "" })" class="btn btn-custom">Login</a>
-                            <a href="@Url.Action("Register", "Auth", new { area = "" })" class="btn btn-outline-light text-custom">Register</a>
+                            <a href="@Url.Action("Register", "Auth", new { area = "" })" class="btn btn-outline-light text-custom py-2">Register</a>
                         }
                         else
                         {
